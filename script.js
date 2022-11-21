@@ -9,6 +9,7 @@ const addTask = (evento) => {
   list.appendChild(task);
 }
 
+const taskList = [];
 
 const createTask = (evento) => {
   evento.preventDefault(); //evita que el form actue por defecto
@@ -32,7 +33,9 @@ const createTask = (evento) => {
   /*La API de almacenamiento web proporciona los mecanismos mediante los cuales el navegador puede almacenar información de tipo clave valor. existen dos tipos de almacenamiento: uno llamado session storage y el otro, llamado local storage, en session storage solo permanece la info en esa seccion, una vez se cierra desaparece la info*/
   //sessionStorage.setItem('tasks', JSON.stringify(taskObj)); //JSON.stringify convierte a string un obj
 
-  localStorage.setItem('tasks', JSON.stringify(taskObj));
+  taskList.push(taskObj);
+
+  localStorage.setItem('tasks', JSON.stringify(taskList));
 
   const titleTask = document.createElement('span');
   titleTask.classList.add('task'); 
