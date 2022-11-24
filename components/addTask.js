@@ -22,6 +22,11 @@ export const addTask = (evento) => {
     //sessionStorage.setItem('tasks', JSON.stringify(taskObj)); //JSON.stringify convierte a string un obj
     
     const taskList = JSON.parse(localStorage.getItem("tasks")) || []; /*tasks es el nombre de la llave que queremos almacenar y esta en localStorage.setItem('tasks',....), los pipelines se usan en caso de que taskList devuelva null, tome por defecto lo que esta a su derecha, en este caso un arreglo.
+    la primera declaración sea verdadera se ejecuta normalmente y la segunda declaración no es aplicada, y si el primer es evaluado como falso, ejecutamos el segundo caso.
+
+    true || false // true
+    false || true // true
+
     El JSON.parse se coloca porque del localStorage.setItem convierte de objeto a string pero en getitem necesitamos todo en formato JSON. */ 
     taskList.push({value, dateFormat});
     localStorage.setItem('tasks', JSON.stringify(taskList));
@@ -31,22 +36,22 @@ export const addTask = (evento) => {
   }
     
   
-  const createTask = ({value, dateFormat}) => {
+  export const createTask = ({value, dateFormat}) => {
     const task = document.createElement('li');
-    task.classList.add('card'); //card viene de style.css
-    const taskContent = document.createElement('div');
+      task.classList.add('card'); //card viene de style.css
     
-   
+    const taskContent = document.createElement('div');
+       
     const titleTask = document.createElement('span');
-    titleTask.classList.add('task'); 
-    titleTask.innerText = value;
-    taskContent.appendChild(checkComplete());
-    taskContent.appendChild(titleTask);
+      titleTask.classList.add('task'); 
+      titleTask.innerText = value;
+      taskContent.appendChild(checkComplete());
+      taskContent.appendChild(titleTask);
 
     const dateElement = document.createElement("span");
-    dateElement.innerHTML = dateFormat;
-    task.appendChild(taskContent);
-    task.appendChild(dateElement);
-    task.appendChild(deleteIcon());
+      dateElement.innerHTML = dateFormat;
+      task.appendChild(taskContent);
+      task.appendChild(dateElement);
+      task.appendChild(deleteIcon());
     return task;
   };
