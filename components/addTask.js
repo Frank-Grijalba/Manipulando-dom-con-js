@@ -1,5 +1,6 @@
 import checkComplete from './checkComplete.js';
 import deleteIcon from './deleteIcon.js';
+import { displayTasks } from './readTasks.js';
 
 export const addTask = (evento) => {
     evento.preventDefault(); //evita que el form actue por defecto
@@ -22,6 +23,8 @@ export const addTask = (evento) => {
         value,
         dateFormat
       };
+
+      list.innerHTML = "";
     /*La API de almacenamiento web proporciona los mecanismos mediante los cuales el navegador puede almacenar información de tipo clave valor. existen dos tipos de almacenamiento: uno llamado session storage y el otro, llamado local storage, en session storage solo permanece la info en esa seccion, una vez se cierra desaparece la info*/
     //sessionStorage.setItem('tasks', JSON.stringify(taskObj)); //JSON.stringify convierte a string un obj
     
@@ -35,8 +38,7 @@ export const addTask = (evento) => {
     taskList.push({value, dateFormat});
     localStorage.setItem('tasks', JSON.stringify(taskList));
 
-    const task = createTask(taskObj);
-    list.appendChild(task);
+    displayTasks();
   }
     
   
